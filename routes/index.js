@@ -39,11 +39,24 @@ router.get('/trackid/:t_id/', function(req, res, next){
   )
   */
   var output=[];
+  var aux={};
   if(json1){
     for(var i=0; i<json1.length; i++){
       if(json1[i].TRACKID==req.params.t_id)
       {
-        output.push(json1[i]);   
+        aux={
+          "trackId": json1[i].TRACKID,
+          "name": json1[i].DRIVER,
+          "longitude": 13242315,
+          "latitude": 5678659, 
+          "importantEvents": [
+            { "date": 5678659,
+             "descrition": "In August 2009, Formula One president Bernie Ecclestone remarked that there was no immediate plan to return Formula One to the US, vowing never to return to Indianapolis. Nevertheless, shortly before the first race of the 2010 season, Ecclestone continued to fuel speculation that a return to Indianapolis was not out of the question"},
+            { "date": 5678659,
+             "descrition": "It was not until 2000 that another United States Grand Prix took place, this time at the Indianapolis Motor Speedway in Indiana. Indianapolis was rumored to have been considering a Formula One race since the USGP left Phoenix; with a proposed street race for the 1990 season in downtown Indianapolisn"}
+            ]
+        }
+        output.push(aux);   
       }
     }
     res.json( output )
