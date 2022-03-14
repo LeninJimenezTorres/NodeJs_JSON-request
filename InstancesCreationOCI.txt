@@ -1,0 +1,60 @@
+Process to create a NodeJs App in Oracle-Linux Instance on OCI
+
+1. Create the instance and save the private and public keys
+
+2. Remote access to the instance with the private key with the following cmd command:
+	ssh -i privatekeyfile.key <user> @ <public ip add>
+
+3. Change to root oracle-linux user:
+	sudo -i
+
+4. Update OracleLinux IOS:
+	yum -y update
+
+5. Install http services on Oracle linux:
+	yum install httpd
+
+6. Init http services:
+	systemctl start httpd
+
+7. Enable http services:
+	systemctl enable httpd
+
+8. Check in httpd operation status:
+	systemctl status httpd
+
+9. Enable ports on Firewall
+	firewall-cmd --permanent --zone=public --add-port=3000/tcp
+
+10. Reload the firewall
+	firewall-cmd --reload
+
+11. Add rule to subnet Primary VNIC on instance, you have to add the ports access you need with the subnet mask 0.0.0.0/0
+
+12. Install node, follor the tuto: https://linuxize.com/post/how-to-install-node-js-on-centos-7/
+	sudo yum install nodejs
+	node --version
+	npm --version
+
+13. Install express on the directory you want to create the project
+	npm install express --save
+
+14. Install generator to build the folder structure
+	npm install -g express-generator -g
+	express --view=ejs
+
+15. Install nodemon to update the app without stop the server
+	npm i nodemon -g
+
+16. Install npm on project
+	npm install
+
+17. Run the npm server
+	npm start	
+
+TO LOAD A GIT NODEJS EXPRESS APP CLONED FROM GIT REPOSITORY
+
+1. Clone the git repository
+	git clone https://github.com/LeninJimenezTorres/OracleCloudInstance1
+
+2. Install 
